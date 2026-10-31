@@ -1,0 +1,115 @@
+.badge-soft-orange {
+    background: $orange-100;
+    color: $orange;
+}
+.badge-soft-pink {
+    background: $pink-100;
+    color: $pink;
+}
+.badge-soft-teal {
+    background: $teal-100;
+    color: $teal;
+}
+.badge-soft-primary {
+    background: $primary-bg-subtle;
+    color: var(--#{$prefix}primary);
+}
+.bg-primary-geadient {
+    background: linear-gradient(289.17deg, #CC99FF -50.13%, #EBD7FF -5.03%, #EAD4FF 30.57%, #F1EBFF 73.85%, #FDBCF1 112.65%);
+}
+.bg-orange {
+    background: $orange;
+}
+.bg-purple {
+    background: $purple;
+}
+.bg-teal {
+    background: $teal;
+}
+.text-indigo {
+    color: $indigo;
+}
+.text-orange {
+    color: $orange;
+}
+.nav-tab-dark {
+    .btn {
+        &.active {
+            background: $dark !important;
+            color: $white;
+            border-color: $dark !important;
+        }
+    }
+}
+.table-grid {
+    padding: 0.3rem;
+    .btn {
+        width: 22px;
+        height: 22px;
+    }
+}
+.avatar {
+    &.grid-img {
+        width: 120px;
+        height: 120px;
+        margin: 40px 0 -30px;
+    }
+}
+.card {
+    &.card-sm {
+        .card-body {
+            padding: 12px;
+        }
+    }
+}
+.custom-form-switch {
+    &.form-switch {
+        .form-check-input {
+            width: 30px;
+            height: 16px;
+            background-position: left 3px center;
+            background-size: 9px;
+            background-color: var(--#{$prefix}gray-100);
+            &:checked {
+                background-position: right 3px center;
+                background-color: $success;
+                border-color: $success;
+            }
+        }
+    }
+}
+
+.lead-card {
+    transition: 0.5s all;
+    .action-hover {
+        opacity: 0;
+        width: 0;
+        transition: 0.5s all;
+        i {
+            color: var(--#{$prefix}white);
+        }
+    }
+    &:hover {
+        background: var(--#{$prefix}primary);
+        transition: 0.5s all;
+        .action-hover {
+            opacity: 1;
+            width: auto;
+            padding: 0 12px;
+            transition: 0.5s all;
+            a {
+                &:hover {
+                    i {
+                        color: var(--#{$prefix}dark);
+                    }
+                }
+            }
+        }
+    }
+}
+.text-truncate {
+    white-space: normal;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}

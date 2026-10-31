@@ -1,0 +1,98 @@
+.navbar-header-two {
+    margin-left: 0;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background: var(--#{$prefix}primary);
+    padding: 10px 24px;
+    min-height: 130px;
+    z-index: 1;
+    position: unset;
+    .navbar-logo {
+        width: 110px;
+    }
+     .header-search {        
+        .header-search-icon {
+            right: 10px;
+        }
+        .input-icon-addon{
+            border-radius: 50%;
+            &.header-search-icon {
+                background-color: var(--#{$prefix}light);
+            }
+        }
+        .form-control {
+            border-radius: 20px;
+        }
+    }
+    @include media-breakpoint-down(lg) {
+        display: none;
+    }
+}
+.dashboard-vertical {
+    background: var(--#{$prefix}light);
+    .page-wrapper {
+        @include media-breakpoint-up(lg) {
+            margin-top: -65px;
+        }
+    }
+    .sidebar-contact {
+        display: none;
+    }
+}
+
+.horizontal-nav {
+    .col-lg-6 {
+        > a {
+            border: 1px solid var(--#{$prefix}border-color);
+            border-left: 0;
+            border-top: 0;
+        }
+        &:nth-child(odd) {
+            > a {
+                border-left: 1px solid var(--#{$prefix}border-color);
+            }
+        }
+        &:first-child {
+            > a {
+                border-radius: 5px 0 0 0;
+                border-top: 1px solid var(--#{$prefix}border-color);
+            }
+        }
+        &:nth-child(2) {
+            > a {
+                border-radius: 0 5px 0 0;
+                border-top: 1px solid var(--#{$prefix}border-color);
+            }   
+        }
+        &:last-child {
+            > a {
+                border-radius: 0 0 5px 0;
+            }
+        }
+        &:nth-last-child(2) {
+            > a {
+                border-radius: 0 0 0 5px;
+            }
+        }
+    }
+    a {
+        font-weight: $font-weight-medium;
+        transition: 0.5s all;
+        &.active {
+            background: var(--#{$prefix}primary);
+            color: $white;
+            border-color: var(--#{$prefix}primary);
+        }
+        &:hover {
+            background: var(--#{$prefix}primary);
+            color: $white;
+            border-color: var(--#{$prefix}primary);
+        }
+    }
+}
+
+.vertical-sedebar {
+    @include media-breakpoint-down(lg) {
+        display: none;
+    }
+}

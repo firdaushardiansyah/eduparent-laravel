@@ -1,0 +1,14 @@
+.notication-card{
+    .noti-btn{
+       opacity: 0;
+       transition: .3s;
+       @include respond-below(md){
+          opacity: 1;
+       }
+    }
+    &:hover{
+       .noti-btn{
+        opacity: 1;
+        } 
+    }
+}

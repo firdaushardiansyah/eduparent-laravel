@@ -1,0 +1,28 @@
+.navbar-header-three {
+    min-height: 230px;
+}
+
+.horizontal-main-menu {
+    ul {
+        display: flex;
+        align-items: center;
+        padding-left: 0;
+        li {
+            flex: 1;
+            margin-right: 20px;
+            &:last-child {
+                margin-right: 0;
+            }
+            a {
+                width: 100%;
+                @include media-breakpoint-down(xl) {
+                    padding: 6px 5px;
+                    font-size: 12px;
+                }
+            }
+            @include media-breakpoint-down(xl) {
+                margin-right: 5px;
+            }
+        }
+    }
+}
