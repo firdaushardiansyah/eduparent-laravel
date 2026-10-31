@@ -1,0 +1,271 @@
+/*
+ * EduParent - Custom Theme Color Override
+ * Primary: #149B8C (Teal / Hijau Toska)
+ * Secondary/Accent: #F5A623 (Kuning / Oranye Cerah)
+ * Background: #FFFFFF / #F8FAFC
+ * Text: #1E293B
+ *
+ * This file overrides the default purple (#3E007C) theme
+ * with a fresh Teal color palette.
+ */
+
+/* ===== ROOT VARIABLE OVERRIDES ===== */
+:root {
+    --pr-topbar-item-hover-color: #149B8C;
+    --pr-menu-item-hover-color: #149B8C;
+    --pr-menu-item-active-color: #149B8C;
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+    --pr-menu-item-hover-bg: rgba(20, 155, 140, 0.08);
+}
+
+/* Dark theme overrides */
+:root[data-bs-theme=dark] {
+    --pr-menu-item-hover-color: #149B8C;
+}
+
+/* Sidebar variant overrides */
+:root[data-sidebar=sidebar2] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=sidebar3] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=sidebar4] {
+    --pr-menu-bg: #149B8C;
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+    --pr-menu-item-border: #17b09f;
+}
+:root[data-sidebar=sidebar5] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=sidebar6] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=sidebar7] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=sidebar8] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+
+/* Gradient sidebar overrides */
+:root[data-sidebar=gradientsidebar1] {
+    --pr-menu-bg: linear-gradient(90deg, #17b09f 0%, #149B8C 100%);
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+    --pr-menu-item-border: #17b09f;
+}
+:root[data-sidebar=gradientsidebar2] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=gradientsidebar3] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=gradientsidebar4] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=gradientsidebar5] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=gradientsidebar6] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=gradientsidebar7] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+:root[data-sidebar=gradientsidebar8] {
+    --pr-menu-active-color: #149B8C;
+    --pr-menu-active-bg: rgba(20, 155, 140, 0.12);
+}
+
+/* Topbar overrides */
+:root[data-topbar=white] {
+    --pr-topbar-item-hover-color: #149B8C;
+}
+:root[data-topbar=topbar1] {
+    --pr-topbar-item-hover-color: #149B8C;
+}
+:root[data-topbar=topbar3] {
+    --pr-topbar-bg: #149B8C;
+    --pr-topbar-item-border: #17b09f;
+}
+
+/* ===== BOOTSTRAP PRIMARY COLOR OVERRIDES ===== */
+.btn-primary {
+    background-color: #149B8C !important;
+    border-color: #149B8C !important;
+    color: #fff !important;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #0f7d71 !important;
+    border-color: #0f7d71 !important;
+    color: #fff !important;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(20, 155, 140, 0.5) !important;
+}
+.btn-outline-primary {
+    color: #149B8C !important;
+    border-color: #149B8C !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary.active {
+    background-color: #149B8C !important;
+    border-color: #149B8C !important;
+    color: #fff !important;
+}
+
+/* ===== TEXT / BACKGROUND / BORDER COLORS ===== */
+.text-primary {
+    color: #149B8C !important;
+}
+.bg-primary {
+    background-color: #149B8C !important;
+}
+.border-primary {
+    border-color: #149B8C !important;
+}
+.link-primary {
+    color: #149B8C !important;
+}
+.link-primary:hover {
+    color: #0f7d71 !important;
+}
+
+/* ===== BADGE SOFT PRIMARY ===== */
+.badge-soft-primary,
+.badge.bg-soft-primary {
+    background-color: rgba(20, 155, 140, 0.12) !important;
+    color: #149B8C !important;
+}
+.bg-soft-primary {
+    background-color: rgba(20, 155, 140, 0.12) !important;
+}
+
+/* ===== FORM ELEMENTS ===== */
+.form-check-input:checked {
+    background-color: #149B8C;
+    border-color: #149B8C;
+}
+.form-check-input:focus {
+    border-color: #149B8C;
+    box-shadow: 0 0 0 0.2rem rgba(20, 155, 140, 0.25);
+}
+.form-control:focus,
+.form-select:focus {
+    border-color: #149B8C;
+    box-shadow: 0 0 0 0.2rem rgba(20, 155, 140, 0.15);
+}
+
+/* ===== PAGINATION ===== */
+.page-link:hover,
+.page-item.active .page-link {
+    background-color: #149B8C;
+    border-color: #149B8C;
+    color: #fff;
+}
+
+/* ===== NAV TABS ===== */
+.nav-tabs .nav-link.active {
+    color: #149B8C;
+    border-bottom-color: #149B8C;
+}
+.nav-pills .nav-link.active {
+    background-color: #149B8C;
+}
+
+/* ===== SIDEBAR ACTIVE STATES ===== */
+.sidebar-menu ul li a.active,
+.sidebar-menu > ul > li > ul > li.submenu > a.active,
+.sidebar-menu > ul > li > ul > li.submenu > a.subdrop {
+    color: #149B8C !important;
+}
+.sidebar-menu ul li.submenu a.subdrop {
+    color: #149B8C !important;
+}
+
+/* ===== DASHBOARD TOGGLE / PROFILE ===== */
+.dashboard-toggle.active {
+    background-color: #149B8C !important;
+    color: #fff !important;
+}
+
+/* ===== HOVER LINKS ===== */
+.hover-a {
+    color: #149B8C;
+}
+.hover-a:hover {
+    color: #0f7d71;
+}
+a:hover {
+    color: #149B8C;
+}
+
+/* ===== PROGRESS BARS ===== */
+.progress-bar {
+    background-color: #149B8C;
+}
+
+/* ===== SPINNER ===== */
+.spinner-border.text-primary {
+    color: #149B8C !important;
+}
+
+/* ===== AUTH PAGE OVERRIDES ===== */
+.auth-bg {
+    background: linear-gradient(135deg, rgba(20, 155, 140, 0.05) 0%, rgba(245, 166, 35, 0.05) 100%);
+}
+
+/* ===== SECONDARY / ACCENT COLOR (F5A623) ===== */
+.badge-accent,
+.badge-secondary-accent {
+    background-color: #F5A623 !important;
+    color: #fff !important;
+}
+
+/* ===== NOTIFICATION BADGE ===== */
+.notification-badge {
+    background-color: #F5A623 !important;
+}
+
+/* ===== SCROLLBAR CUSTOMIZATION ===== */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(20, 155, 140, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(20, 155, 140, 0.5);
+}
+
+/* ===== SELECTION HIGHLIGHT ===== */
+::selection {
+    background-color: rgba(20, 155, 140, 0.2);
+    color: #1E293B;
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb-item a {
+    color: #149B8C;
+}
+.breadcrumb-item a:hover {
+    color: #0f7d71;
+}
