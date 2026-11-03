@@ -1,61 +1,64 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PasswordChangeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
+use App\Http\Controllers\Ortu\DashboardController as OrtuDashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-})->name('dashboard');
-
-Route::get('/login', function () {
-    return view('pages.login');
-})->name('login');
-
-Route::post('/login', function () {
-    return redirect()->route('dashboard');
+// Guest routes (login)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'show'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
 });
 
-Route::get('/register', function () {
-    return view('pages.register');
-})->name('register');
+// Authenticated routes
+Route::middleware(['auth', 'active', 'password.changed'])->group(function () {
+    // Main dashboard redirect
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    });
 
-Route::post('/register', function () {
-    return redirect()->route('dashboard');
+    // Guru routes
+    Route::middleware(['role:guru'])->prefix('guru')->name('guru.')->group(function () {
+        Route::get('/dashboard', GuruDashboardController::class)->name('dashboard');
+    });
+
+    // Orang Tua routes
+    Route::middleware(['role:ortu'])->prefix('ortu')->name('ortu.')->group(function () {
+        Route::get('/dashboard', OrtuDashboardController::class)->name('dashboard');
+    });
 });
 
-Route::get('/forgot-password', function () {
-    return view('pages.forgot-password');
-})->name('password.request');
+// Password change routes (exempt from password.changed middleware)
+Route::middleware(['auth', 'active'])->group(function () {
+    Route::get('/change-password', [PasswordChangeController::class, 'edit'])->name('password.change.edit');
+    Route::post('/change-password', [PasswordChangeController::class, 'update'])->name('password.change.update');
+});
 
-Route::post('/forgot-password', function () {
-    return back()->with('status', 'Link reset password telah dikirim ke email Anda.');
-})->name('password.email');
-
-Route::post('/logout', function (Request $request) {
-    if (auth()->check()) {
-        auth()->logout();
-    }
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-
-    return redirect()->route('login')->with('success', 'Anda telah berhasil keluar.');
-})->name('logout');
+// Logout (POST only)
+Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
 
 // Placeholder testing route for layout verification (Local & Testing environments only)
 if (app()->environment('local', 'testing')) {
-    Route::get('/layout-check', function () {
-        return view('pages.layout-check');
-    })->name('layout-check');
+    Route::middleware(['auth', 'active', 'password.changed'])->group(function () {
+        Route::get('/layout-check', function () {
+            return view('pages.layout-check');
+        })->name('layout-check');
 
-    Route::post('/layout-check/submit', function (Request $request) {
-        $validated = $request->validate([
-            'nama_siswa' => 'required|min:3|string',
-            'kelas' => 'required|string',
-            'catatan' => 'nullable|string',
-        ]);
+        Route::post('/layout-check/submit', function (Request $request) {
+            $validated = $request->validate([
+                'nama_siswa' => 'required|min:3|string',
+                'kelas' => 'required|string',
+                'catatan' => 'nullable|string',
+            ]);
 
-        return back()
-            ->withInput()
-            ->with('success', 'Form verifikasi layout berhasil dikirim untuk: '.$validated['nama_siswa']);
-    })->name('layout-check.submit');
+            return back()
+                ->withInput()
+                ->with('success', 'Form verifikasi layout berhasil dikirim untuk: '.$validated['nama_siswa']);
+        })->name('layout-check.submit');
+    });
 }

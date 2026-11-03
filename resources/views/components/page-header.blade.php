@@ -16,9 +16,9 @@
                     </li>
                     @foreach ($breadcrumbs as $label => $url)
                         @if ($loop->last)
-                            <li class="breadcrumb-item active fw-medium" aria-current="page">{{ $label }}</li>
+                            <li class="breadcrumb-item active fw-medium" aria-current="page">{{ is_array($url) ? ($url['label'] ?? $label) : $label }}</li>
                         @else
-                            <li class="breadcrumb-item"><a href="{{ $url }}" class="text-decoration-none">{{ $label }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ is_array($url) ? ($url['url'] ?? '#') : $url }}" class="text-decoration-none">{{ is_array($url) ? ($url['label'] ?? $label) : $label }}</a></li>
                         @endif
                     @endforeach
                 </ol>

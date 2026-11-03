@@ -35,7 +35,7 @@
            @if ($disabled) disabled @endif
            @if ($readonly) readonly @endif
            style="min-height: 44px; font-size: 16px;"
-           {{ $attributes->class(['form-control', 'is-invalid' => $errors->has($name)]) }}>
+           {{ $attributes->merge(['class' => 'form-control'])->class(['is-invalid' => $errors->has($name)]) }}>
 
     @if ($helper && !$errors->has($name))
         <div class="form-text fs-12 text-muted">{{ $helper }}</div>

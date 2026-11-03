@@ -35,8 +35,7 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
                 @php
-                    // TODO Tahap 2: ganti dengan auth()->user()->role
-                    $currentRole = auth()->check() ? (auth()->user()->role ?? 'admin') : 'admin';
+                    $currentRole = auth()->check() ? auth()->user()->role->value : null;
                     $menuGroups = config('menu.items', []);
                 @endphp
 

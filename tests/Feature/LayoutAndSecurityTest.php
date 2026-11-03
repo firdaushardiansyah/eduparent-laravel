@@ -2,15 +2,21 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class LayoutAndSecurityTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_layout_check_route_returns_ok_on_local(): void
     {
-        $response = $this->get('/layout-check');
+        $user = User::factory()->guru()->create();
+
+        $response = $this->actingAs($user)->get('/layout-check');
 
         $response->assertStatus(200);
         $response->assertSee('Pengujian Base Layout & Binding Aset');
@@ -19,7 +25,9 @@ class LayoutAndSecurityTest extends TestCase
 
     public function test_security_headers_are_present(): void
     {
-        $response = $this->get('/layout-check');
+        $user = User::factory()->guru()->create();
+
+        $response = $this->actingAs($user)->get('/layout-check');
 
         $response->assertHeader('X-Frame-Options', 'SAMEORIGIN');
         $response->assertHeader('X-Content-Type-Options', 'nosniff');
@@ -37,7 +45,10 @@ class LayoutAndSecurityTest extends TestCase
 
     public function test_form_submission_with_csrf_succeeds(): void
     {
-        $response = $this->withSession(['_token' => 'test-csrf-token'])
+        $user = User::factory()->guru()->create();
+
+        $response = $this->actingAs($user)
+            ->withSession(['_token' => 'test-csrf-token'])
             ->post('/layout-check/submit', [
                 '_token' => 'test-csrf-token',
                 'nama_siswa' => 'Budi Santoso',
@@ -49,16 +60,18 @@ class LayoutAndSecurityTest extends TestCase
 
     public function test_xss_escaping_in_flash_and_form(): void
     {
+        $user = User::factory()->guru()->create();
         $xssPayload = '<script>alert("xss")</script>';
 
-        $response = $this->withSession(['_token' => 'test-csrf-token'])
+        $response = $this->actingAs($user)
+            ->withSession(['_token' => 'test-csrf-token'])
             ->post('/layout-check/submit', [
                 '_token' => 'test-csrf-token',
                 'nama_siswa' => $xssPayload,
                 'kelas' => 'TK-A',
             ]);
 
-        $redirectResponse = $this->get('/layout-check');
+        $redirectResponse = $this->actingAs($user)->get('/layout-check');
         $content = $redirectResponse->getContent();
 
         // Ensure literal script tags are escaped into HTML entities and not executed as raw HTML
@@ -78,14 +91,16 @@ class LayoutAndSecurityTest extends TestCase
     {
         $response = $this->get('/login');
         $response->assertStatus(200);
-        $response->assertSee('Sign In');
+        $response->assertSee('Masuk ke EduParent');
     }
 
-    public function test_dashboard_renders_with_app_layout(): void
+    public function test_dashboard_redirects_for_authenticated_users(): void
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
-        $response->assertSee('Admin Dashboard');
+        $user = User::factory()->guru()->create();
+
+        $response = $this->actingAs($user)->get('/');
+
+        $response->assertRedirect('/dashboard');
     }
 
     public function test_all_core_template_assets_exist_in_public(): void
